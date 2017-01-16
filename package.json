@@ -1,10 +1,10 @@
 {
-  "name": "ebookcollector",
+  "name": "EbookCollector",
   "version": "0.0.0",
   "description": "A simple Ebook collector",
   "private": true,
   "scripts": {
-    "dev": "nodemon -w src --exec \"babel-node src --presets es2015,stage-2\"",
+    "dev": "set DEBUG=EbookCollector:* & nodemon -w src --exec \"babel-node src --presets es2015,stage-2\"",
     "build": "babel src -s -D -d dist --presets es2015,stage-2",
     "start": "node dist"
   },

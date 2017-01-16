@@ -3,7 +3,7 @@
  */
 
 var app = require('./app');
-var debug = require('debug')('ebookcollector:server');
+var debug = require('debug')('EbookCollector:server');
 var http = require('http');
 
 /**
