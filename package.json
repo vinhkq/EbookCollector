@@ -1,0 +1,31 @@
+{
+  "name": "ebookcollector",
+  "version": "0.0.0",
+  "description": "A simple Ebook collector",
+  "private": true,
+  "scripts": {
+    "start": "babel-node server.js --presets es2015,stage-2"
+  },
+  "author": "VinhKQ",
+  "dependencies": {
+    "axios": "^0.15.3",
+    "babel-core": "^6.21.0",
+    "body-parser": "~1.15.2",
+    "cheerio": "^0.22.0",
+    "cookie-parser": "~1.4.3",
+    "debug": "~2.2.0",
+    "express": "~4.14.0",
+    "morgan": "~1.7.0",
+    "node-sass-middleware": "0.9.8",
+    "pug": "~2.0.0-beta6",
+    "serve-favicon": "~2.3.0"
+  },
+  "devDependencies": {
+    "babel-cli": "^6.18.0",
+    "babel-eslint": "^7.1.1",
+    "babel-preset-es2015": "^6.18.0",
+    "babel-preset-stage-0": "^6.16.0",
+    "babel-preset-stage-2": "^6.18.0",
+    "babel-register": "^6.18.0"
+  }
+}

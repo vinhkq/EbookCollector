@@ -1,2 +1,2 @@
 # EbookCollector
-A simple NodeJs app to collect Ebook.
+A simple NodeJs app to collect Ebook. - In development
