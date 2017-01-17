@@ -1,16 +1,17 @@
-import { Router } from 'express'
-import index from './../modules/index'
+import { Router } from 'express';
+import index from './../modules/index';
+import detail from './../modules/detail';
 
 let route = Router ();
 
 /* GET home page. */
 route.get('/', function(req, res, next) {
-  res.render('index', { title: index() });
+  index(res);
 });
 
-/* GET users listing. */
-route.get('/users', function(req, res, next) {
-  res.send('respond with a resource');
+/* GET detail page. */
+route.get('/detail', function(req, res, next) {
+  detail(req, res);
 });
 
 
