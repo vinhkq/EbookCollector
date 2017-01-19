@@ -5,9 +5,11 @@ block content
   p Welcome to #{title}
   ul
   each item, index in items
-    li= item.name
-    each author in item.authorList
-      p=author
-    each link in item.authorLinks
-      b=link
-      hr
+    li
+      #{item.name}
+      each author in item.authorList
+        p=author
+      each link in item.authorLinks
+        b=link
+      a(href=item.href) Detail
+    hr
