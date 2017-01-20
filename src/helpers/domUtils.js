@@ -42,7 +42,8 @@ export function detailDOMParser (data) {
   const publisherLink = $('.info').eq(2).find("a[rel='tag']").attr('href');
   const publishDate = $('.info').eq(3).find('i').text();
   const pages = $('.info').eq(4).find('i').text();
-  let description = $('.panel-body').eq(1).toArray(); // => todo
+  let description = $('.panel-body').eq(1).html();
+  description = description.substring(4);
   return {
     name,
     image,
