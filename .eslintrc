@@ -1,4 +1,4 @@
-module.exports = {
+{
     "extends": "airbnb",
     "env": {
       "browser": true,
@@ -7,17 +7,5 @@ module.exports = {
     },
     "installedESLint": true,
     "parser": "babel-eslint",
-    "rules": {
-        "no-underscore-dangle": "off",
-        "no-unused-expressions": "off",
-        "no-restricted-syntax": "off",
-        "import/no-unresolved": "off",
-        "global-require": "off",
-        "no-console": "off",
-        "no-alert": "off",
-        "no-param-reassign": "off",
-        "no-unused-vars": "off",
-        "react/prefer-stateless-function": "off",
-        "no-shadow": "off"
-    },
-};
+    "rules": {}
+}
