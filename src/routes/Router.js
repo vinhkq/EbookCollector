@@ -2,15 +2,15 @@ import { Router } from 'express';
 import index from './../modules/index';
 import detail from './../modules/detail';
 
-let route = Router ();
+const route = Router();
 
 /* GET home page. */
-route.get('/', function(req, res, next) {
+route.get('/', (req, res) => {
   index(res);
 });
 
 /* GET detail page. */
-route.get('/detail/:slug', function(req, res, next) {
+route.get('/detail/:slug', (req, res) => {
   detail(req, res);
 });
 

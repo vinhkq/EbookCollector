@@ -50,4 +50,4 @@ app.use((err, req, res) => {
   response.render('error');
 });
 
-module.exports = app;
+export default app;
