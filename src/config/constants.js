@@ -1,3 +1,4 @@
-const BASE_URL = 'BaseURL';
+const BASE_URL = 'http://localhost/';
+const HOME = 'home';
 
-export { BASE_URL };
+export { BASE_URL, HOME };

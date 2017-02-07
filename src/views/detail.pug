@@ -3,3 +3,22 @@ extends layout
 block content
   h1= title
   p Welcome to #{title}
+  .detail
+    #{item.name}
+    each author in item.authorList
+      p=author
+    each link in item.authorLinks
+      b=link
+    br
+    b=item.publishDate
+    br
+    b=item.pages
+  hr
+  !=item.description
+  hr
+  each download in item.downloadInfo
+    p=download.site
+    p=download.link
+    p=download.type
+    p=download.size
+    p=download.uploadDate

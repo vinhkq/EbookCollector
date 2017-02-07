@@ -1,9 +1,9 @@
 import axios from 'axios';
-import { BASE_URL } from '../config/constants';
+import { BASE_URL, HOME } from '../config/constants';
 import { indexDOMParser } from '../helpers/domUtils';
 
 export default function index (res) {
-  axios.get(BASE_URL)
+  axios.get(BASE_URL + HOME)
   .then((response) => {
 
     const items = indexDOMParser(response.data);

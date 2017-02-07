@@ -10,7 +10,7 @@ route.get('/', function(req, res, next) {
 });
 
 /* GET detail page. */
-route.get('/detail', function(req, res, next) {
+route.get('/detail/:slug', function(req, res, next) {
   detail(req, res);
 });
 
