@@ -2,9 +2,11 @@
  * Module dependencies.
  */
 
-const app = require('./app');
-const debug = require('debug')('EbookCollector:server');
-const http = require('http');
+import debug from 'debug';
+import http from 'http';
+import app from './app';
+
+const debuger = debug('EbookCollector:server');
 
 /**
  * Create HTTP server.
@@ -76,7 +78,7 @@ function onListening() {
   const bind = typeof addr === 'string'
     ? `pipe  + ${addr}`
     : `port  + ${addr.port}`;
-  debug(`Listening on  + ${bind}`);
+  debuger(`Listening on  + ${bind}`);
 }
 
 

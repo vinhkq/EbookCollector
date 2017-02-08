@@ -9,4 +9,8 @@ npm-debug.log
 # Build production
 dist
 
+# Config file
+.env
+
+# Visual Studio Code
 .vscode

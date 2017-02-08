@@ -1,4 +1,8 @@
-const BASE_URL = 'http://localhost/';
-const HOME = 'home';
+import dotenv from 'dotenv';
 
-export { BASE_URL, HOME };
+dotenv.config();
+
+const BASE_URL = process.env.BASE_URL;
+const HOME_PAGE = process.env.HOME_PAGE;
+
+export { BASE_URL, HOME_PAGE };
