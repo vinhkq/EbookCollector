@@ -5,7 +5,7 @@ import logger from 'morgan';
 import cookieParser from 'cookie-parser';
 import bodyParser from 'body-parser';
 import sassMiddleware from 'node-sass-middleware';
-import route from './routes/Router';
+import route from './routes/router';
 
 const app = express();
 

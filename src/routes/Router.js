@@ -1,18 +1,12 @@
 import { Router } from 'express';
-import index from './../modules/index';
-import detail from './../modules/detail';
+import { index, detail } from './../controllers/home';
 
 const route = Router();
 
 /* GET home page. */
-route.get('/', (req, res) => {
-  index(res);
-});
+route.get('/', (req, res) => index(res));
 
 /* GET detail page. */
-route.get('/detail/:slug', (req, res) => {
-  detail(req, res);
-});
-
+route.get('/detail/:slug', (req, res) => detail(req, res));
 
 export default route;
