@@ -72,16 +72,19 @@ export function detailDOMParser(data) {
   const description = $('.panel-body').eq(1).html();
 
   const downloadInfo = $('tr').map((index, td) => {
-    const site = $(td).find('td').eq(0).text();
-    const link = $(td)
-      .find('td')
-      .eq(1)
-      .find('a')
-      .attr('href');
-    const type = $(td).find('td').eq(2).text();
-    const size = $(td).find('td').eq(3).text();
-    const uploadDate = $(td).find('td').eq(4).text();
-    return { site, link, type, size, uploadDate };
+    const downloadObj = {};
+    downloadObj.site = $(td).find('td').eq(0).text();
+    if (downloadObj.site) {
+      downloadObj.link = $(td)
+        .find('td')
+        .eq(1)
+        .find('a')
+        .attr('href');
+      downloadObj.type = $(td).find('td').eq(2).text();
+      downloadObj.size = $(td).find('td').eq(3).text();
+      downloadObj.uploadDate = $(td).find('td').eq(4).text();
+    }
+    return downloadObj;
   }).get();
 
   return {

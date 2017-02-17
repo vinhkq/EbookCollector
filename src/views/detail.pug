@@ -19,6 +19,8 @@ block content
   each download in item.downloadInfo
     p=download.site
     p=download.link
+    a(href=download.link target="_blank") Download
     p=download.type
     p=download.size
     p=download.uploadDate
+    hr
