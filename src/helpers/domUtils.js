@@ -71,10 +71,12 @@ export function detailDOMParser(data) {
   const pages = $('.info').eq(4).find('i').text();
   const description = $('.panel-body').eq(1).html();
 
-  const downloadInfo = $('tr').map((index, td) => {
-    const downloadObj = {};
-    downloadObj.site = $(td).find('td').eq(0).text();
-    if (downloadObj.site) {
+  const downloadInfo = [];
+  $('tr').map((index, td) => {
+    const site = $(td).find('td').eq(0).text();
+    if (site) {
+      const downloadObj = {};
+      downloadObj.site = site;
       downloadObj.link = $(td)
         .find('td')
         .eq(1)
@@ -83,8 +85,9 @@ export function detailDOMParser(data) {
       downloadObj.type = $(td).find('td').eq(2).text();
       downloadObj.size = $(td).find('td').eq(3).text();
       downloadObj.uploadDate = $(td).find('td').eq(4).text();
+      downloadInfo.push(downloadObj);
     }
-    return downloadObj;
+    return false;
   }).get();
 
   return {
