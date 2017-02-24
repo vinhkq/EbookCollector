@@ -20,7 +20,8 @@ const detail = (req, res) => {
   axios.get(BASE_URL + slug)
   .then((response) => {
     const item = detailDOMParser(response.data);
-    getLink(item.downloadInfo);
+    const downloadInfo = getLink(item.downloadInfo);
+    console.info(downloadInfo);
     res.render('detail', { title: 'Detail Page!!!', item });
   }).catch((error) => {
     console.log(error);
