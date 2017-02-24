@@ -1,14 +1,9 @@
 import axios from 'axios';
 import cheerio from 'cheerio';
 
-export default function getLink(downloadInfo) {
-  const formattedDownload = Object.assign({}, downloadInfo);
-  downloadInfo.forEach((download, index) => {
-    const storageLink = download.link.substr(download.link.indexOf('http://www'));
-    const sitePart = storageLink.substring(
-      storageLink.indexOf('http://www'),
-      storageLink.indexOf('.com/'));
-    axios.get(storageLink)
+async function formatURL(storageLink, sitePart) {
+  let formattedURL = '';
+  await axios.get(storageLink)
     .then((response) => {
       const $ = cheerio.load(response.data);
       const arrScript = $('#dlbutton').next().text().split(';');
@@ -21,14 +16,27 @@ export default function getLink(downloadInfo) {
       const urlPart1 = arrURL[0].replace('"', '').slice(0, -1);
       const urlPart2 = aVariable + (cVariable % bVariable);
       const urlPart3 = arrURL[3].replace('"', '').slice(0, -1);
-      const formattedURL = `${sitePart}.com${urlPart1}${urlPart2}${urlPart3}`;
-
-      formattedDownload[index].link = formattedURL;
-      console.log(formattedURL);
+      formattedURL = `${sitePart}.com${urlPart1}${urlPart2}${urlPart3}`;
     }).catch((error) => {
       console.log(error);
     });
-  });
+  return formattedURL;
+}
 
+export default async function getLink(downloadInfo) {
+  const formattedDownload = Object.assign({}, downloadInfo);
+  let i = 0;
+  for (let download in formattedDownload) {
+    download = formattedDownload[download];
+    if (download.link) {
+      const storageLink = download.link.substr(download.link.indexOf('http://www'));
+      const sitePart = storageLink.substring(
+        storageLink.indexOf('http://www'),
+        storageLink.indexOf('.com/'));
+      const formattedURL = await formatURL(storageLink, sitePart);
+      formattedDownload[i].link = formattedURL;
+      i += 1;
+    }
+  }
   return formattedDownload;
 }
