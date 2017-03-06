@@ -25,9 +25,9 @@ async function formatURL(storageLink, sitePart) {
 
 export default async function getLink(downloadInfo) {
   const formattedDownload = Object.assign({}, downloadInfo);
-  let i = 0;
-  for (let download in formattedDownload) {
-    download = formattedDownload[download];
+  const downloadLength = Object.keys(formattedDownload).length;
+  for (let i = 0; i < downloadLength; i += 1) {
+    const download = formattedDownload[i];
     if (download.link) {
       const storageLink = download.link.substr(download.link.indexOf('http://www'));
       const sitePart = storageLink.substring(
@@ -35,7 +35,6 @@ export default async function getLink(downloadInfo) {
         storageLink.indexOf('.com/'));
       const formattedURL = await formatURL(storageLink, sitePart);
       formattedDownload[i].link = formattedURL;
-      i += 1;
     }
   }
   return formattedDownload;
