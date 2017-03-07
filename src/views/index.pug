@@ -5,8 +5,10 @@ block content
   p Welcome to #{title}
   ul
   each item, index in items
+    b #{item.name}
+    p
+      img(src=item.image)
     li
-      #{item.name}
       each author in item.authorList
         p=author
       each link in item.authorLinks
