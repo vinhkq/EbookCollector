@@ -3,8 +3,13 @@ import { BASE_URL, HOME_PAGE } from '../config/constants';
 import { indexDOMParser, detailDOMParser } from '../helpers/domUtils';
 import getLink from '../helpers/downloadUtils';
 
-const index = (res) => {
-  axios.get(BASE_URL + HOME_PAGE)
+const index = (req, res) => {
+  let path = `${BASE_URL}${HOME_PAGE}`;
+  if (req.params.page) {
+    path = `${path}/page/${req.params.page}`;
+  }
+
+  axios.get(path)
   .then((response) => {
     const items = indexDOMParser(response.data);
 
