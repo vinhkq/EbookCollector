@@ -33,8 +33,9 @@ export default async function getLink(downloadInfo) {
       const sitePart = storageLink.substring(
         storageLink.indexOf('http://www'),
         storageLink.indexOf('.com/'));
-      const formattedURL = await formatURL(storageLink, sitePart);
-      formattedDownload[i].link = formattedURL;
+      // const formattedURL = await formatURL(storageLink, sitePart);
+      // formattedDownload[i].link = formattedURL;
+      formattedDownload[i].link = storageLink;
     }
   }
   return formattedDownload;
