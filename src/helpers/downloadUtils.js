@@ -1,26 +1,14 @@
-import axios from 'axios';
 import cheerio from 'cheerio';
+import phantom from 'phantom';
 
-async function formatURL(storageLink, sitePart) {
-  let formattedURL = '';
-  await axios.get(storageLink)
-    .then((response) => {
-      const $ = cheerio.load(response.data);
-      const arrScript = $('#dlbutton').next().text().split(';');
-      const aVariable = Math.floor(parseInt(arrScript[0].replace(/[^\d.]/g, ''), 10) / 3);
-      const bVariable = parseInt(arrScript[1].replace(/[^\d.]/g, ''), 10);
-      const cVariable = parseInt(arrScript[0].replace(/[^\d.]/g, ''), 10);
-      const arrURL = arrScript[5]
-        .substr(arrScript[5].indexOf('"/d/'), arrScript[5].indexOf('rar"')).split('+');
+async function dynamicContent(storageLink) {
+  const instance = await phantom.create();
+  const page = await instance.createPage();
+  await page.open(storageLink);
 
-      const urlPart1 = arrURL[0].replace('"', '').slice(0, -1);
-      const urlPart2 = aVariable + (cVariable % bVariable);
-      const urlPart3 = arrURL[3].replace('"', '').slice(0, -1);
-      formattedURL = `${sitePart}.com${urlPart1}${urlPart2}${urlPart3}`;
-    }).catch((error) => {
-      console.log(error);
-    });
-  return formattedURL;
+  const content = await page.property('content');
+  await instance.exit();
+  return content;
 }
 
 export default async function getLink(downloadInfo) {
@@ -33,9 +21,9 @@ export default async function getLink(downloadInfo) {
       const sitePart = storageLink.substring(
         storageLink.indexOf('http://www'),
         storageLink.indexOf('.com/'));
-      // const formattedURL = await formatURL(storageLink, sitePart);
-      // formattedDownload[i].link = formattedURL;
-      formattedDownload[i].link = storageLink;
+      const $ = cheerio.load(await dynamicContent(storageLink));
+      const formattedURL = $('#dlbutton').attr('href');
+      formattedDownload[i].link = `${sitePart}.com${formattedURL}`;
     }
   }
   return formattedDownload;

@@ -14,3 +14,5 @@ dist
 
 # Visual Studio Code
 .vscode
+
+phantomjs
